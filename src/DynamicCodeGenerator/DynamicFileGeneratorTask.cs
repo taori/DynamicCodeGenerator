@@ -17,7 +17,9 @@ namespace DynamicCodeGenerator
     public class DynamicFileGeneratorTask : ITask
     {
 		[Output]
-	    public string GeneratedFilePaths { get; set; }
+	    public string CompilationPaths { get; set; }
+		[Output]
+	    public string ContentPaths { get; set; }
 
 	    public bool Execute()
 	    {
@@ -46,12 +48,13 @@ namespace DynamicCodeGenerator
 
 				if (assembly != null)
 				{
-					var codeFileManager = new CodeFileManager(Path.GetDirectoryName(BuildEngine.ProjectFileOfTaskNode));
+					var codeFileManager = new CodeFileManager(BuildEngine.ProjectFileOfTaskNode);
 					var userGeneratorTypes = assembly.ExportedTypes.Where(d => typeof (ICodeFileGenerator).IsAssignableFrom(d));
 					var generators = CreateGenerators(userGeneratorTypes);
 					ExecuteGenerators(generators, assembly, codeFileManager);
 
-					GeneratedFilePaths = string.Join(",", codeFileManager.AbsolutePaths);
+					CompilationPaths = string.Join(",", codeFileManager.CompilationPaths);
+					ContentPaths = string.Join(",", codeFileManager.ContentPaths);
 				}
 			}
 		    catch (Exception ex)

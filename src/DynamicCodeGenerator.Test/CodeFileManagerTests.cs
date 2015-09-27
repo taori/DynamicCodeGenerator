@@ -3,8 +3,7 @@ using NUnit.Framework;
 
 namespace DynamicCodeGenerator.Test
 {
-	[TestFixture("D:\\folder1\\folder2\\")]
-	[TestFixture("D:\\folder1\\folder2")]
+	[TestFixture("D:\\folder1\\folder2\\pseudo.csproj")]
 	public class CodeFileManagerTests
 	{
 		public CodeFileManagerTests(string rootPath)
@@ -46,21 +45,20 @@ namespace DynamicCodeGenerator.Test
 			"..\\folder3\\..\\folder4\\file.cs", 
 			"D:\\folder1\\folder4\\file.cs"
 		)]
-
-		public void TestRelativeResolution(string relativePath, string expectedResolutionPath)
+		public void RelativeResolution(string relativePath, string expectedResolutionPath)
 		{
 			var manager = new CodeFileManager(_rootPath);
-			var path = manager.AddFile(relativePath);
-			Assert.That(manager.AbsolutePaths.Count, Is.EqualTo(1));
+			var path = manager.AddFile(relativePath, CodeFileType.Compilation);
+			Assert.That(manager.CompilationPaths.Count, Is.EqualTo(1));
 			Assert.That(path, Is.EqualTo(expectedResolutionPath));
 		}
-
-		[Test]
-		public void VerifyAddFileThrow()
+		
+		[Theory]
+		public void VerifyAddFileThrow(CodeFileType type)
 		{
 			var manager = new CodeFileManager(_rootPath);
-			Assert.Throws<ArgumentException>(() => manager.AddFile(null));
-			Assert.Throws<ArgumentException>(() => manager.AddFile(string.Empty));
+			Assert.Throws<ArgumentException>(() => manager.AddFile(null, type));
+			Assert.Throws<ArgumentException>(() => manager.AddFile(string.Empty, type));
 		}
 
 		[Test]
@@ -68,6 +66,13 @@ namespace DynamicCodeGenerator.Test
 		{
 			Assert.Throws<ArgumentException>(() => new CodeFileManager(null));
 			Assert.Throws<ArgumentException>(() => new CodeFileManager(string.Empty));
+		}
+
+		[Test]
+		public void VerfiyPathRetrieval()
+		{
+			var manager = new CodeFileManager(_rootPath);
+			Assert.That(manager.GetProjectFilePath(), Is.EqualTo(_rootPath));
 		}
 	}
 }

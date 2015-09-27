@@ -61,12 +61,16 @@
 	<UsingTask TaskName="DynamicCodeGenerator.DynamicFileGeneratorTask" AssemblyFile="..\DynamicCodeGenerator\bin\Debug\DynamicCodeGenerator.dll" />
 	<Target Name="DynamicCodeGeneratorTarget" BeforeTargets="BeforeBuild;BeforeRebuild">
 		<DynamicFileGeneratorTask>
-			<Output ItemName="Generated" TaskParameter="GeneratedFilePaths" />
+			<Output ItemName="DynamicCodeGeneratorCompilationPaths" TaskParameter="CompilationPaths" />
+			<Output ItemName="DynamicCodeGeneratorContentPaths" TaskParameter="ContentPaths" />
 		</DynamicFileGeneratorTask>
 		<ItemGroup>
-			<Compile Include="@(Generated)" />
-			<FileWrites Include="@(Generated)" />
-			<!-- For clean to work properly -->
+			<Compile Include="@(DynamicCodeGeneratorCompilationPaths)" Condition="@(DynamicCodeGeneratorCompilationPaths) != ''" />
+			<FileWrites Include="@(DynamicCodeGeneratorCompilationPaths)" Condition="@(DynamicCodeGeneratorCompilationPaths) != ''"/>
+		</ItemGroup>
+		<ItemGroup>
+			<Content Include="@(DynamicCodeGeneratorContentPaths)" Condition="@(DynamicCodeGeneratorContentPaths) != ''" />
+			<FileWrites Include="@(DynamicCodeGeneratorContentPaths)" Condition="@(DynamicCodeGeneratorContentPaths) != ''"/>
 		</ItemGroup>
 	</Target>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

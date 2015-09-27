@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeFileManager.cs" />
+    <Compile Include="CodeFileType.cs" />
     <Compile Include="DynamicFileGeneratorTask.cs" />
     <Compile Include="Helpers\BuildEngineExtensions.cs" />
     <Compile Include="ICodeFileGenerator.cs" />
