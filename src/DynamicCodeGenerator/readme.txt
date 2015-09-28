@@ -1,0 +1,1 @@
+﻿// nuget install script credit goes to: http://stackoverflow.com/questions/6328980/create-a-custom-powershell-script-for-nuget-that-adds-a-custom-target-to-the-csp
