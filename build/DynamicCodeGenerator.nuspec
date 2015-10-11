@@ -14,6 +14,7 @@
 		<frameworkAssemblies>
 			<frameworkAssembly assemblyName="System" targetFramework="net40" />
 			<frameworkAssembly assemblyName="System.Core" targetFramework="net40" />
+			<frameworkAssembly assemblyName="Microsoft.Build.Framework" targetFramework="net46" />
 		</frameworkAssemblies>
 		<dependencies>	
 			<group>
@@ -29,7 +30,10 @@
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="binaries\DynamicCodeGenerator\Release\lib\**" target="lib" />
-		<file src="packContent\build\**" target="build\" />
+		<file src="binaries\DynamicCodeGenerator\Debug\lib\net46\DynamicCodeGenerator.dll" target="lib\net46" />
+		<file src="binaries\DynamicCodeGenerator\Debug\lib\net46\DynamicCodeGenerator.pdb" target="lib\net46" />
+		<file src="binaries\DynamicCodeGenerator\Debug\lib\net46\DynamicCodeGenerator.dll" target="build\net46" />
+		<file src="binaries\DynamicCodeGenerator\Debug\lib\net46\DynamicCodeGenerator.pdb" target="build\net46" />
+		<file src="packageContent\build\**" target="build\" />
 	</files>
 </package>
