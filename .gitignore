@@ -210,3 +210,13 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+*.ncrunchsolution
+
+
+# build environment
+!build/
+
+**/build/publish.apiKey.txt
+build/packages/**
+build/binaries/**
+*.ncrunchproject

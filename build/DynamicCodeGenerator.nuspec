@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>DynamicCodeGenerator</id>
+		<version>0.1.0-alpha</version>
+		<authors>Andreas Müller</authors>
+		<owners>Andreas Müller</owners>
+		<description>This package provides an alternative to t4 code generation</description>
+		<language>en-US</language>
+		<projectUrl>https://github.com/taori/DynamicCodeGenerator</projectUrl>
+		<licenseUrl>https://github.com/taori/DynamicCodeGenerator/LICENSE.MD</licenseUrl>
+		<tags>t4 alternative</tags>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System" targetFramework="net40" />
+			<frameworkAssembly assemblyName="System.Core" targetFramework="net40" />
+		</frameworkAssemblies>
+		<dependencies>	
+			<group>
+				<dependency id="Microsoft.CodeAnalysis.Analyzers" version="[1.0.0,)"  />
+				<dependency id="Microsoft.CodeAnalysis.Common" version="[1.0.0,)"  />
+				<dependency id="Microsoft.CodeAnalysis.CSharp" version="[1.0.0,)"  />
+				<dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="[1.0.0,)" />
+				<dependency id="Microsoft.CodeAnalysis.Workspaces.Common" version="[1.0.0,)" />
+				<dependency id="Microsoft.Composition" version="[1.0.27,)"  />
+				<dependency id="System.Collections.Immutable" version="[1.1.36,)"  />
+				<dependency id="System.Reflection.Metadata" version="[1.0.21,)" />
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="binaries\DynamicCodeGenerator\Release\lib\**" target="lib" />
+		<file src="packContent\build\**" target="build\" />
+	</files>
+</package>

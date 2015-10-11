@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+	<PropertyGroup>
+		<CodeGeneratorAssemblyPath></CodeGeneratorAssemblyPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="Exists('..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="Exists('..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="Exists('..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="Exists('..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="Exists('..\..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="Exists('..\..\..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	</PropertyGroup>
+	
+	<UsingTask TaskName="DynamicCodeGenerator.DynamicFileGeneratorTask" 
+			   Condition="@(CodeGeneratorAssemblyPath) != ''"
+			   AssemblyFile="@(CodeGeneratorAssemblyPath)" />
+	<Target Name="DynamicCodeGeneratorTarget" BeforeTargets="BeforeBuild;BeforeRebuild" Condition="@(CodeGeneratorAssemblyPath) != ''">
+		<DynamicFileGeneratorTask>
+			<Output ItemName="DynamicCodeGeneratorCompilationPaths" TaskParameter="CompilationPaths" />
+			<Output ItemName="DynamicCodeGeneratorContentPaths" TaskParameter="ContentPaths" />
+		</DynamicFileGeneratorTask>
+		<ItemGroup>
+			<Compile Include="@(DynamicCodeGeneratorCompilationPaths)" Condition="@(DynamicCodeGeneratorCompilationPaths) != ''" />
+			<FileWrites Include="@(DynamicCodeGeneratorCompilationPaths)" Condition="@(DynamicCodeGeneratorCompilationPaths) != ''"/>
+		</ItemGroup>
+		<ItemGroup>
+			<Content Include="@(DynamicCodeGeneratorContentPaths)" Condition="@(DynamicCodeGeneratorContentPaths) != ''" />
+			<FileWrites Include="@(DynamicCodeGeneratorContentPaths)" Condition="@(DynamicCodeGeneratorContentPaths) != ''"/>
+		</ItemGroup>
+	</Target>
+</Project>
