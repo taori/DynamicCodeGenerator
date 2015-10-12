@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>DynamicCodeGenerator</id>
-		<version>0.1.0-alpha</version>
+		<version>0.1.3-alpha</version>
 		<authors>Andreas Müller</authors>
 		<owners>Andreas Müller</owners>
 		<description>This package provides an alternative to t4 code generation</description>
@@ -30,10 +30,10 @@
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="binaries\DynamicCodeGenerator\Debug\lib\net46\DynamicCodeGenerator.dll" target="lib\net46" />
-		<file src="binaries\DynamicCodeGenerator\Debug\lib\net46\DynamicCodeGenerator.pdb" target="lib\net46" />
-		<file src="binaries\DynamicCodeGenerator\Debug\lib\net46\DynamicCodeGenerator.dll" target="build\net46" />
-		<file src="binaries\DynamicCodeGenerator\Debug\lib\net46\DynamicCodeGenerator.pdb" target="build\net46" />
-		<file src="packageContent\build\**" target="build\" />
+		<file src="binaries\DynamicCodeGenerator\Release\lib\net46\DynamicCodeGenerator.dll" target="lib\net46" />
+		<file src="binaries\DynamicCodeGenerator\Release\lib\net46\DynamicCodeGenerator.pdb" target="lib\net46" />
+		<file src="binaries\DynamicCodeGenerator\Release\lib\net46\DynamicCodeGenerator.dll" target="build\net46" />
+		<file src="binaries\DynamicCodeGenerator\Release\lib\net46\DynamicCodeGenerator.pdb" target="build\net46" />
+		<file src="packageContent\build\**.targets" target="build\" />
 	</files>
 </package>

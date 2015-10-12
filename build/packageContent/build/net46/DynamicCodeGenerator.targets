@@ -3,23 +3,23 @@
 	<PropertyGroup>
 		<CodeGeneratorAssemblyPath></CodeGeneratorAssemblyPath>
 	</PropertyGroup>
-	<PropertyGroup Condition="Exists('..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
-		<CodeGeneratorAssemblyPath>..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	<PropertyGroup Condition="Exists('..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
 	</PropertyGroup>
-	<PropertyGroup Condition="Exists('..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
-		<CodeGeneratorAssemblyPath>..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	<PropertyGroup Condition="Exists('..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
 	</PropertyGroup>
-	<PropertyGroup Condition="Exists('..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
-		<CodeGeneratorAssemblyPath>..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	<PropertyGroup Condition="Exists('..\..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
 	</PropertyGroup>
-	<PropertyGroup Condition="Exists('..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
-		<CodeGeneratorAssemblyPath>..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	<PropertyGroup Condition="Exists('..\..\..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
 	</PropertyGroup>
-	<PropertyGroup Condition="Exists('..\..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
-		<CodeGeneratorAssemblyPath>..\..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	<PropertyGroup Condition="Exists('..\..\..\..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\..\..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
 	</PropertyGroup>
-	<PropertyGroup Condition="Exists('..\..\..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%')">
-		<CodeGeneratorAssemblyPath>..\..\..\..\..\..\packages\%PACKAGENAME%\build\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
+	<PropertyGroup Condition="Exists('..\..\..\..\..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%')">
+		<CodeGeneratorAssemblyPath>..\..\..\..\..\..\packages\%PACKAGENAME%\lib\net46\%DLLNAME%</CodeGeneratorAssemblyPath>
 	</PropertyGroup>
 	
 	<UsingTask TaskName="DynamicCodeGenerator.DynamicFileGeneratorTask" 

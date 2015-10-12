@@ -2,6 +2,16 @@ param(
 	[bool] $PushToNuget = $false
 )
 
+function ReplaceContents($file, $replacementDictionary){
+	
+	$FileContent = Get-Content $file
+	foreach($Replacement in $replacementDictionary.GetEnumerator()){
+		$FileContent = $FileContent -replace $Replacement.Key, $Replacement.Value
+	}
+	
+	$FileContent | Out-File $file
+}
+
 $packages = @("DynamicCodeGenerator")
 
 $apiKey = [IO.File]::ReadAllText("publish.apiKey.txt")
@@ -18,13 +28,22 @@ foreach ($package in $packages){
 	$Host.UI.RawUI.ForegroundColor = "white"
 	"Setting up packacking for $package $version"
 
-	$packagePath = ".\packages\$package\$version";
+	$packagePath = ".\packages\";
 
 	If(Test-Path $packagePath){
 		Remove-Item -Recurse -Force $packagePath
 	}
 
 	md -Force $packagePath | Out-Null
+	
+	$TargetsFile = ".\packageContent\build\net46\DynamicCodeGenerator.targets"	
+	$TargetsFileBackup = "$($TargetsFile).backup"
+	Copy-Item $TargetsFile $TargetsFileBackup
+
+	ReplaceContents $TargetsFile @{
+		"%PACKAGENAME%" = "DynamicCodeGenerator.$version";
+		"%DLLNAME%" = "DynamicCodeGenerator.dll"
+	}
 
 	# todo add sources for -Symbols pack process
 	#$packArguments = "pack -Symbols -Version $version $package.nuspec -OutputDirectory $packagePath";
@@ -33,7 +52,9 @@ foreach ($package in $packages){
 	"Packaging with Nuget.exe $packArguments"
 	Start-Process -FilePath $nugetPath -WindowStyle Hidden -ArgumentList $packArguments -ErrorAction Stop -Wait
 	
-
+	Copy-Item $TargetsFileBackup $TargetsFile
+	Remove-Item $TargetsFileBackup
+	
 	If($PushToNuget -eq $true){
 		$pushArguments = "push $packagePath\$package.$version.nupkg -ApiKey $apiKey -Timeout 60 -Verbosity normal"
 		$Host.UI.RawUI.ForegroundColor = "red"
